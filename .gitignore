@@ -5,3 +5,5 @@
 *.sql
 MANIFEST
 .DS_Store
+*.so
+*.c
