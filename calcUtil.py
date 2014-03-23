@@ -22,8 +22,10 @@ def updateHiddenWeight(inputlist, weightlist, output, annstep, delta, weight):
     return weightlist
 
 def updateOutputWeight(inputlist, weightlist, output, prosInput, annstep):
+    deltaList = []
     for i in xrange(len(inputlist)):
         delta = float(output) * (float(1) - float(output)) * (float(prosInput) - float(output))
+        deltaList.append(float(delta))
         deltaWeight = float(annstep) * float(delta) * float(inputlist[i])
         weightlist[i] = weightlist[i] + deltaWeight
     #return float(delta)

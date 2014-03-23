@@ -73,7 +73,7 @@ def mainProcess():
     initSampleFile = open(initSampleSource, "r")
     sampleCount = len(initSampleFile.readlines())
     initSampleFile.close()
-    
+
     initSamples = []
     hiddenList = []
     
@@ -97,7 +97,7 @@ def mainProcess():
                 hiddenList[j].updateInput(initSamples[i].operatorList)
             
             outputNode.updateInput([hiddennode.getOutputNew() for hiddennode in hiddenList])
-            deltaList = outputNode.updateWeightNew(trainingSamples[i].supervisor)
+            deltaList = outputNode.updateWeightNew(initSamples[i].supervisor)
 
             for t in xrange(HIDDENNODENUMBER):
                 hiddenList[t].updateWeightNew(deltaList[t], outputNode.weight[t])
@@ -105,7 +105,7 @@ def mainProcess():
             outputNode.updateInput([hiddennode.getOutputNew() for hiddennode in hiddenList])
             finaloutput = outputNode.getOutputNew()
 
-        E += (float(finaloutput) - float(trainingSamples[i].supervisor))**2
+        E += (float(finaloutput) - float(initSamples[i].supervisor))**2
 
         E = float(E)/2
         print 'E is %f' % float(E)
